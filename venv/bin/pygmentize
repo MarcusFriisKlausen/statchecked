@@ -1,4 +1,4 @@
-#!/home/marcus/school/dis/project/statchecker/sandbox/bin/python
+#!/home/marcus/school/dis/project/statchecked/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
