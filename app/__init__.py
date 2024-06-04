@@ -27,4 +27,6 @@ def index():
     final_list.sort(reverse=False)
     return render_template('index.html', hists=final_list)
 
-
+@app.route("/")
+def champ_page():
+    return render_template('champ_page.html')
