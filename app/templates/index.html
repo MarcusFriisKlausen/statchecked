@@ -1,0 +1,50 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<body>
+    <img src="static/img/portraits/Aatrox.webp" alt="Aatrox">
+    <div>
+         
+    </div>
+</body>
+</html> -->
+
+
+{% block head%}
+<title>statchecked</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+<!-- <h1 align="center">Statchecked</h1> -->
+
+<center>
+    <div class="container">
+        <div class="shadows">
+            <span>S</span>
+            <span>T</span>
+            <span>A</span>
+            <span>T</span>
+            <span>C</span>
+            <span>H</span>
+            <span>E</span>
+            <span>C</span>
+            <span>K</span>
+            <span>E</span>
+            <span>D</span>
+
+        </div>
+    </div>
+</center>
+<div class="slashed">
+    <div  class="top" title="Slashed">
+    </div>
+    <div class="bot" title="Slashed"></div>
+</div>
+<center>
+    <div class="images">
+        {% for hist in hists %}
+        <img src="{{hist}}" alt="{{hist}}">
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}
