@@ -35,15 +35,10 @@
         </div>
     </div>
 </center>
-<div class="slashed">
-    <div  class="top" title="Slashed">
-    </div>
-    <div class="bot" title="Slashed"></div>
-</div>
 <center>
     <div class="images">
-        {% for hist in hists %}
-        <img src="{{hist}}" alt="{{hist}}">
+        {% for tile, splash, loading in pics %}
+        <a href="{{ url_for('champ_page') }}?loading={{loading}}&splash={{splash}}"><img src="{{tile}}" alt="{{tile}}"></a>
         {% endfor %}
     </div>
 </center>
