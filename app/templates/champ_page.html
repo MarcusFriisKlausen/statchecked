@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CHAMPION PAGE</title>
 <style>
     #box {
         background-color: rgba(47, 46, 46, 0.5);
@@ -61,12 +61,10 @@
 </body>
 <script>
     function regexMatch(str) {
-        const regex = /static\/img\/splash\/([a-zA-Z]+)_0\.jpg/;
-  
-        // Execute the regex on the input string
+        const regex = /static[\/\\]img[\/\\]splash[\/\\]([a-zA-Z]+)_0\.jpg/
+        
         const match = str.match(regex);
   
-        // If there is a match, return the captured group; otherwise, return null
         if (match) {
           return match[1];
         } else {
@@ -74,42 +72,37 @@
         }
     }
 
+    // search for query parameters
     var qs = new URLSearchParams(window.location.search);
     var loading = qs.get('loading');
-    var splash = qs.get('splash')
+    var splash = qs.get('splash');
 
-    function insertImg() {
-        let img = document.createElement('img');
-        img.src = loading;
-        console.log(img.src);
-        document.getElementById('champion').appendChild(img);
-    }
-    insertImg()
+    // insert loading image
+    let img = document.createElement('img');
+    img.src = loading;
+    console.log(img.src);
+    document.getElementById('champion').appendChild(img);
 
+    // insert splash image 
     var style = document.createElement('style');
     style.innerHTML = `body{
-        background-image: url(`+ splash + `);
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-color: rgba(0, 0, 0, 0.43);
         background-blend-mode: darken; 
         background-size: 100% 100%;
     }`;
+    document.body.background = splash;
     document.head.appendChild(style);
 
-    function insertTitle() {
-        var title = document.createElement("H1");
-        const temp = regexMatch(splash);
-        console.log(temp)
-        var text = document.createTextNode(temp);
-        title.appendChild(text);
-        title.style.color = "#FFD700";
-        title.style.fontSize = "50";
-        title.style.textAlign = "center";
-        document.getElementById('box').appendChild(title);
-    }
-    insertTitle()
+    // insert title
+    var title = document.createElement("H1");
+    const temp = regexMatch(splash);
+    var text = document.createTextNode(temp);
+    title.appendChild(text);
+    title.style.color = "#FFD700";
+    title.style.fontSize = "50";
+    title.style.textAlign = "center";
+    document.getElementById('box').appendChild(title);
 </script> 
 </html>
-
-<!-- <img id="champion" src={{ url_for('static', filename='img/splash/Aatrox_0.jpg') }}>; -->
