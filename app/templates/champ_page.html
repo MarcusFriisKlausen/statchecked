@@ -1,0 +1,71 @@
+
+
+<!-- <style>
+    body {
+      background-image: url('Aatrox_0.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+      background-size: 100% 100%;
+    }
+    </style> -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    body{
+        background-image: url("/static/img/splash/Aatrox_0.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: rgba(0, 0, 0, 0.43);
+        background-blend-mode: darken; 
+        background-size: 100% 100%;
+    }
+    .box {
+        background-color: rgba(47, 46, 46, 0.5);
+        width: 600px;
+        height: 540px;
+        border: 1px rgba(47, 46, 46, 0.5);
+        padding: 10px;
+        margin: 10px;
+    }
+    .winrate {
+        background-color: rgba(47, 46, 46, 0.5);
+        width: 200px;
+        height: 100px;
+        border: 1px rgba(47, 46, 46, 0.5);
+        padding: 10px;
+        margin: 10px;
+    }
+    .winrate_data {
+        background-color: rgba(47, 46, 46, 0.5);
+        width: 200px;
+        height: 100px;
+        border: 1px rgba(47, 46, 46, 0.5);
+        padding: 10px;
+        margin: 10px;
+    }
+    /* img{
+        opacity: 0.6;
+    } */
+</style>
+</head>
+<body>
+    <div style = "position:absolute; left:150px; top:150px;">
+        <img id="champion" src={{ url_for('static', filename='img/loading/Aatrox_0.jpg') }}>;
+     </div>
+    <div class="box", style = "position:absolute; left:447px; top:140px;">
+        <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:absolute; left:240px; top:20px;">Aatrox</font><br />
+      </div>
+    <div class="winrate", style = "position:absolute; left:527px; top:280px;">
+        <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:relative; left:15px; top:25px;">Win rate:</font><br />
+     </div>
+    <div class="winrate_data", style = "position:absolute; left:767px; top:280px;">
+        <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:relative; left:40px; top:25px;">100%</font><br />
+     </div>
+</body>
+</html>
+
+<!-- <img id="champion" src={{ url_for('static', filename='img/splash/Aatrox_0.jpg') }}>; -->

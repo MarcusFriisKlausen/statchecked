@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import os
 
 app = Flask(__name__)
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 @app.route("/")
 def index():
@@ -26,4 +27,6 @@ def index():
     final_list.sort(reverse=False)
     return render_template('index.html', hists=final_list)
 
-
+@app.route("/")
+def champ_page():
+    return render_template('champ_page.html')
