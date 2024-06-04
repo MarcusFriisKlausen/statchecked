@@ -1,0 +1,21 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<body>
+    <img src="static/img/portraits/Aatrox.webp" alt="Aatrox">
+    <div>
+         
+    </div>
+</body>
+</html> -->
+
+
+{% block head%}
+<title>statchecked</title>
+{% endblock %}
+
+{% block body %}
+<h1 align="center">statchecked</h1>
+    {% for hist in hists %}
+        <img src="{{hist}}" alt="{{hist}}">
+    {% endfor %}
+{% endblock %}
