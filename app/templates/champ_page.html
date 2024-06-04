@@ -60,6 +60,20 @@
      </div>
 </body>
 <script>
+    function regexMatch(str) {
+        const regex = /static\/img\/splash\/([a-zA-Z]+)_0\.jpg/;
+  
+        // Execute the regex on the input string
+        const match = str.match(regex);
+  
+        // If there is a match, return the captured group; otherwise, return null
+        if (match) {
+          return match[1];
+        } else {
+          return null;
+        }
+    }
+
     var qs = new URLSearchParams(window.location.search);
     var loading = qs.get('loading');
     var splash = qs.get('splash')
@@ -85,13 +99,13 @@
 
     function insertTitle() {
         var title = document.createElement("H1");
-        var t = document.createTextNode(splash);
-        title.appendChild(t);
+        const temp = regexMatch(splash);
+        console.log(temp)
+        var text = document.createTextNode(temp);
+        title.appendChild(text);
         title.style.color = "#FFD700";
-        title.style.position = "fixed";
-        title.style.top = "20%";
-        title.style.left = "41%";
-        title.style.transform = "translate(-50%, -50%)";
+        title.style.fontSize = "50";
+        title.style.textAlign = "center";
         document.getElementById('box').appendChild(title);
     }
     insertTitle()
