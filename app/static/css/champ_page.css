@@ -1,0 +1,41 @@
+@font-face {
+    font-family: LeagueFont; /*a name to be used later*/
+    src: url('/static/fonts/BeaufortForLoL-TTF/BeaufortforLOL-Bold.ttf'); /*URL to font*/
+    font-weight: bold;
+}
+
+body{
+    background-image: url("/static/img/splash/Aatrox_0.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.43);
+    background-blend-mode: darken; 
+    background-size: 100% 100%;
+}
+.box {
+    background-color: rgba(47, 46, 46, 0.5);
+    width: 600px;
+    height: 540px;
+    border: 1px rgba(47, 46, 46, 0.5);
+    padding: 10px;
+    margin: 10px;
+}
+.winrate {
+    background-color: rgba(47, 46, 46, 0.5);
+    width: 200px;
+    height: 100px;
+    border: 1px rgba(47, 46, 46, 0.5);
+    padding: 10px;
+    margin: 10px;
+}
+.winrate_data {
+    background-color: rgba(47, 46, 46, 0.5);
+    width: 200px;
+    height: 100px;
+    border: 1px rgba(47, 46, 46, 0.5);
+    padding: 10px;
+    margin: 10px;
+}
+.center {
+ text-align: center
+}
