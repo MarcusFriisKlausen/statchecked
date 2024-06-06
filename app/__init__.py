@@ -1,18 +1,38 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 import os
+import flask_sqlalchemy as sa
+from sqlalchemy import text
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+db = sa.SQLAlchemy()
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(os.getcwd(), 'instance', 'project.db')}"
+db.init_app(app)
+
+def get_winrate(champ:str):
+    with app.app_context():
+        count = db.session.execute(text('''SELECT * FROM Champions WHERE champion = "''' + champ + '''"'''))
+        wins = db.session.execute(text('''SELECT * FROM Champions WHERE champion = "''' + champ + '''" AND win = "True"'''))
+        count_wins = (len(wins.all()))
+        count_count = (len(count.all()))
+        # print("Count", count_count)
+        # print("Wins", count_wins)
+        if count_count > 0: 
+            wr = round((100 * count_wins / count_count), 2)
+        else:
+            print(champ)
+            wr = 0
+        # print("Winrate:", wr)
+        return wr
 
 @app.route("/")
 def index():
     root = os.getcwd()
-    basepath_tiles = os.path.join(root, 'app', 'static', 'img', 'tiles')
-    basepath_splash = os.path.join(root, 'app', 'static', 'img', 'splash')
-    basepath_loading = os.path.join(root, 'app', 'static', 'img', 'loading')
-    badpath_len = len(os.path.join(root, 'app'))
-    print(basepath_tiles)
+    basepath_tiles = os.path.join(root, 'static', 'img', 'tiles')
+    basepath_splash = os.path.join(root, 'static', 'img', 'splash')
+    basepath_loading = os.path.join(root, 'static', 'img', 'loading')
+    badpath_len = len(os.path.join(root))
     dir_tiles = os.walk(basepath_tiles)
     dir_splash = os.walk(basepath_splash)
     dir_loading = os.walk(basepath_loading)
@@ -62,8 +82,9 @@ def index():
     tuple_list = []
 
     for i in range(len(final_list_loading)):
-        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i]))
-
+        champ_name = (final_list_tiles[i][len(basepath_tiles)-badpath_len+1:])[:-6]
+        wr = get_winrate(champ_name)
+        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i], wr, champ_name))
     return render_template('index.html', pics=tuple_list)
 
 @app.route("/champ_page")
