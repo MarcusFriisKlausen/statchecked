@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champion Page</title>
+<script>
+    function regexMatch(str) {
+        const regex = /static[\/\\]img[\/\\]splash[\/\\]([a-zA-Z]+)_0\.jpg/
+        
+        const match = str.match(regex);
+  
+        if (match) {
+          return match[1];
+        } else {
+          return null;
+        }
+    }
+
+    // search for query parameters
+    var qs = new URLSearchParams(window.location.search);
+    var loading = qs.get('loading');
+    var splash = qs.get('splash');
+
+    // insert loading image
+    let img = document.createElement('img');
+    img.src = loading;
+    console.log(img.src);
+    document.getElementById('champion').appendChild(img);
+
+    // insert splash image 
+    var style = document.createElement('style');
+    style.innerHTML = `body{
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-color: rgba(0, 0, 0, 0.43);
+        background-blend-mode: darken; 
+        background-size: 100% 100%;
+    }`;
+    document.body.background = splash;
+    document.head.appendChild(style);
+    </script>
+</html>

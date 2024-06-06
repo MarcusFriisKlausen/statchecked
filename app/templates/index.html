@@ -18,7 +18,7 @@
 <!-- <h1 align="center">Statchecked</h1> -->
 
   <!-- Search Bar -->
-  <form role="search" id="form">
+  <form role="search" id="form"method="GET" action="{{ url_for('search_champion') }}">
     <input type="search" id="query" name="q"
      placeholder="Search..."
      aria-label="Search through site content">

@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+import pandas as pd
 import os
 
 app = Flask(__name__)
@@ -68,3 +69,18 @@ def index():
 @app.route("/champ_page")
 def champ_page():
     return render_template('champ_page.html')
+
+root = os.getcwd()
+basepath = os.path.join(root, 'sandbox', "Champions.csv")
+data = pd.read_csv(basepath)
+champions = data['champion'].tolist()
+
+@app.route('/search_champion')
+def search_champion():
+    query = request.args.get('q')
+    if query:
+        query = query.title()  # Capitalize the first letter of each word
+        if query in champions:
+            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg')
+    # If the champion is not found, you can redirect to an error page or back to the index
+    return redirect(url_for('index'))
