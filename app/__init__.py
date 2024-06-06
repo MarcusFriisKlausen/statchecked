@@ -92,7 +92,7 @@ def champ_page():
     return render_template('champ_page.html')
 
 root = os.getcwd()
-basepath = os.path.join(root, 'sandbox', "Champions.csv")
+basepath = os.path.join(root, 'static', 'data', "Champions.csv")
 data = pd.read_csv(basepath)
 champions = data['champion'].tolist()
 
@@ -102,6 +102,6 @@ def search_champion():
     if query:
         query = query.title()  # Capitalize the first letter of each word
         if query in champions:
-            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg')
+            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg&win=' + str(get_winrate(query)))
     # If the champion is not found, you can redirect to an error page or back to the index
     return redirect(url_for('index'))
