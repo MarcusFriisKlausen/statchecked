@@ -25,29 +25,30 @@
         <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:absolute; left:240px; top:20px;"></font><br />
       </div>
     <div class="winrate", style = "position:absolute; left:527px; top:280px;">
-        <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:relative; left:15px; top:25px;">Win rate:</font><br />
+        <font color = "#FFD700" size =" 10" style = "position:relative; left:15px; top:25px;">Win Rate:</font><br />
      </div>
-    <div class="winrate_data", style = "position:absolute; left:767px; top:280px;">
-        <font color = "#FFD700" face = "Beaufort" size =" 10" style = "position:relative; left:40px; top:25px;">100%</font><br />
+    <div id="winrate_data", style = "position:absolute; left:767px; top:280px;">
+        <font color = "#FFD700" size =" 10" style = "position:relative; left:40px; top:25px;"></font><br />
      </div>
 </body>
 <script>
     function regexMatch(str) {
-        const regex = /static[\/\\]img[\/\\]splash[\/\\]([a-zA-Z]+)_0\.jpg/
-        
-        const match = str.match(regex);
-  
-        if (match) {
+      const regex = /static[\/\\]img[\/\\]splash[\/\\]([a-zA-Z'.& ]+)_0\.jpg/;
+      
+      const match = str.match(regex);
+      
+      if (match) {
           return match[1];
-        } else {
+      } else {
           return null;
-        }
+      }
     }
 
     // search for query parameters
     var qs = new URLSearchParams(window.location.search);
     var loading = qs.get('loading');
     var splash = qs.get('splash');
+    var wr = qs.get('win');
 
     // insert loading image
     let img = document.createElement('img');
@@ -76,5 +77,17 @@
     title.style.fontSize = "50";
     title.style.textAlign = "center";
     document.getElementById('box').appendChild(title);
+
+    // insert wr
+    var title = document.createElement("font");
+    var text = document.createTextNode(wr + "%");
+    title.appendChild(text);
+    title.style.color = "#FFD700";
+    title.style.fontSize = "50";
+    title.style.textAlign = "center";
+    title.style.position = "relative";
+    title.style.left = "40px";
+    title.style.top = "10px";
+    document.getElementById('winrate_data').appendChild(title);
 </script> 
 </html>

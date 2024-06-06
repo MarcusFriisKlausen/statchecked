@@ -3,6 +3,11 @@
     src: url('/static/fonts/BeaufortForLoL-TTF/BeaufortforLOL-Bold.ttf'); /*URL to font*/
     font-weight: bold;
 }
+@font-face {
+  font-family: LeagueFontLight; /*a name to be used later*/
+  src: url('/static/fonts/BeaufortForLoL-TTF/BeaufortforLOL-Medium.ttf'); /*URL to font*/
+  font-weight: bold;
+}
 
 body{
     background: rgb(10,20,40);
@@ -38,13 +43,25 @@ body{
   }
 
 .images {
-    flex-wrap: wrap;
-    padding: 0 4px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 300px;
+  height: 500px;
+  margin: 1.5%;
+}
+
+.image p {
+  text-align: center;
+  font-family: LeagueFontLight;
 }
 
 .images img{
     width: 300px;
-    padding: 30px;
     transition: transform .2s; /* Animation */
     filter: drop-shadow(8px 8px 4px black);
 }
