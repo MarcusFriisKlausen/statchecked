@@ -43,6 +43,7 @@
       <font color = "#FFD700" size =" 10" style = "position:relative; left:40px; top:75px;"></font><br />
     </div>
 </body>
+{% for wr, pr, games in data %}
 <script>
     function regexMatch(str) {
       const regex = /static[\/\\]img[\/\\]splash[\/\\]([a-zA-Z'.& ]+)_0\.jpg/;
@@ -60,9 +61,6 @@
     var qs = new URLSearchParams(window.location.search);
     var loading = qs.get('loading');
     var splash = qs.get('splash');
-    var wr = qs.get('win');
-    var pr = qs.get('pickr')
-    var games = qs.get('games')
 
     // insert loading image
     let img = document.createElement('img');
@@ -94,7 +92,7 @@
 
     // insert wr
     var title = document.createElement("font");
-    var text = document.createTextNode(wr + "%");
+    var text = document.createTextNode("{{wr}}" + "%");
     title.appendChild(text);
     title.style.color = "#FFD700";
     title.style.fontSize = "50";
@@ -106,7 +104,7 @@
 
     // insert pr
     var title = document.createElement("font");
-    var text = document.createTextNode(pr + "%");
+    var text = document.createTextNode("{{pr}}" + "%");
     title.appendChild(text);
     title.style.color = "#FFD700";
     title.style.fontSize = "50";
@@ -118,7 +116,7 @@
 
     // insert games
     var title = document.createElement("font");
-    var text = document.createTextNode(games);
+    var text = document.createTextNode("{{games}}");
     title.appendChild(text);
     title.style.color = "#FFD700";
     title.style.fontSize = "50";
@@ -127,5 +125,6 @@
     title.style.left = "40px";
     title.style.top = "140px";
     document.getElementById('games_data').appendChild(title);
-</script> 
+</script>
+{% endfor %} 
 </html>

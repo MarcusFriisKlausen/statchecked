@@ -98,15 +98,18 @@ def index():
 
     for i in range(len(final_list_loading)):
         champ_name = (final_list_tiles[i][len(basepath_tiles)-badpath_len+1:])[:-6]
-        wr = get_winrate(champ_name)
-        games_picked = get_games_played(champ_name)
-        pr = get_pickrate(champ_name)
-        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i], wr, champ_name, pr, games_picked))
+        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i], champ_name))
     return render_template('index.html', pics=tuple_list)
 
-@app.route("/champ_page")
+@app.route("/champ_page", methods=['POST', 'GET'])
 def champ_page():
-    return render_template('champ_page.html')
+    champ = request.args.get('champ')
+    print("Champion:", champ)
+    wr = get_winrate(champ)
+    games_picked = get_games_played(champ)
+    pr = get_pickrate(champ)
+    info = [(wr, pr, games_picked)]
+    return render_template('champ_page.html', data=info)
 
 root = os.getcwd()
 basepath = os.path.join(root, 'static', 'data', "Champions.csv")

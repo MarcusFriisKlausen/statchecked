@@ -62,9 +62,9 @@
 </center>
 <center>
       <div class="images">
-          {% for tile, splash, loading, wr, champ, pr, gp in pics %}
+          {% for tile, splash, loading, champ in pics %}
           <div class="image" id="{{splash}}">
-            <a href="{{ url_for('champ_page') }}?loading={{loading}}&splash={{splash}}&win={{wr}}&pickr={{pr}}&games={{gp}}"><img src="{{tile}}" alt="{{tile}}"></a>
+            <a href="{{ url_for('champ_page') }}?loading={{loading}}&splash={{splash}}&champ={{champ}}"><img src="{{tile}}" alt="{{tile}}"></a>
             <p style="color: FFD700; font-size: 50; text-align: center;">{{champ}}</p>
           </div>
           {% endfor %}
