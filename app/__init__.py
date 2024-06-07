@@ -104,7 +104,7 @@ def index():
 @app.route("/champ_page", methods=['POST', 'GET'])
 def champ_page():
     champ = request.args.get('champ')
-    print("Champion:", champ)
+    # print("Champion:", champ)
     wr = get_winrate(champ)
     games_picked = get_games_played(champ)
     pr = get_pickrate(champ)
@@ -122,6 +122,9 @@ def search_champion():
     if query:
         query = query.title()  # Capitalize the first letter of each word
         if query in champions:
-            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '&champ=' + query)
+            wr = get_winrate(query)
+            games_picked = get_games_played(query)
+            pr = get_pickrate(query)
+            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg&champ=' + query)
     # If the champion is not found, you can redirect to an error page or back to the index
     return redirect(url_for('index'))

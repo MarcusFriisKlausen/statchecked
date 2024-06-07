@@ -61,7 +61,8 @@
     var qs = new URLSearchParams(window.location.search);
     var loading = qs.get('loading');
     var splash = qs.get('splash');
-
+    var champ = qs.get('champ')
+    console.log(splash)
     // insert loading image
     let img = document.createElement('img');
     img.src = loading;
@@ -80,15 +81,26 @@
     document.body.background = splash;
     document.head.appendChild(style);
 
-    // insert title
-    var title = document.createElement("H1");
-    const temp = regexMatch(splash);
-    var text = document.createTextNode(temp);
-    title.appendChild(text);
-    title.style.color = "#FFD700";
-    title.style.fontSize = "50";
-    title.style.textAlign = "center";
-    document.getElementById('box').appendChild(title);
+    if (champ != null) {
+    //   // insert title
+      var title = document.createElement("H1");
+      var text = document.createTextNode(champ);
+      title.appendChild(text);
+      title.style.color = "#FFD700";
+      title.style.fontSize = "50";
+      title.style.textAlign = "center";
+      document.getElementById('box').appendChild(title);
+    } else {
+      // insert title
+      var title = document.createElement("H1");
+      const temp = regexMatch(splash);
+      var text = document.createTextNode(temp);
+      title.appendChild(text);
+      title.style.color = "#FFD700";
+      title.style.fontSize = "50";
+      title.style.textAlign = "center";
+      document.getElementById('box').appendChild(title);
+    }
 
     // insert wr
     var title = document.createElement("font");
