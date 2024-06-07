@@ -17,6 +17,22 @@
     font-family: LeagueFontLight;
 }
 
+.pickrate font {
+    font-family: LeagueFontLight;
+}
+
+.pickrate_data font {
+    font-family: LeagueFontLight;
+}
+
+.games font {
+    font-family: LeagueFontLight;
+}
+
+.games_data font {
+    font-family: LeagueFontLight;
+}
+
 h1 {
     font-family: LeagueFont;
     text-decoration: underline;

@@ -30,6 +30,18 @@
     <div id="winrate_data", style = "position:absolute; left:767px; top:280px;">
         <font color = "#FFD700" size =" 10" style = "position:relative; left:40px; top:25px;"></font><br />
      </div>
+     <div class="pickrate", style = "position:absolute; left:546px; top:380px;">
+      <font color = "#FFD700" size =" 10" style = "position:relative; left:15px; top:25px;">Pick Rate:</font><br />
+    </div>
+    <div id="pickrate_data", style = "position:absolute; left:767px; top:330px;">
+      <font color = "#FFD700" size =" 10" style = "position:relative; left:40px; top:75px;"></font><br />
+    </div>
+    <div class="games", style = "position:absolute; left:546px; top:460px;">
+      <font color = "#FFD700" size =" 10" style = "position:relative; left:15px; top:25px;">Games:</font><br />
+    </div>
+    <div id="games_data", style = "position:absolute; left:767px; top:330px;">
+      <font color = "#FFD700" size =" 10" style = "position:relative; left:40px; top:75px;"></font><br />
+    </div>
 </body>
 <script>
     function regexMatch(str) {
@@ -49,6 +61,8 @@
     var loading = qs.get('loading');
     var splash = qs.get('splash');
     var wr = qs.get('win');
+    var pr = qs.get('pickr')
+    var games = qs.get('games')
 
     // insert loading image
     let img = document.createElement('img');
@@ -86,8 +100,32 @@
     title.style.fontSize = "50";
     title.style.textAlign = "center";
     title.style.position = "relative";
-    title.style.left = "40px";
+    title.style.left = "20px";
     title.style.top = "10px";
     document.getElementById('winrate_data').appendChild(title);
+
+    // insert pr
+    var title = document.createElement("font");
+    var text = document.createTextNode(pr + "%");
+    title.appendChild(text);
+    title.style.color = "#FFD700";
+    title.style.fontSize = "50";
+    title.style.textAlign = "center";
+    title.style.position = "relative";
+    title.style.left = "40px";
+    title.style.top = "60px";
+    document.getElementById('pickrate_data').appendChild(title);
+
+    // insert games
+    var title = document.createElement("font");
+    var text = document.createTextNode(games);
+    title.appendChild(text);
+    title.style.color = "#FFD700";
+    title.style.fontSize = "50";
+    title.style.textAlign = "center";
+    title.style.position = "relative";
+    title.style.left = "40px";
+    title.style.top = "140px";
+    document.getElementById('games_data').appendChild(title);
 </script> 
 </html>

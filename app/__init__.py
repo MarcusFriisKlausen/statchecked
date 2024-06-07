@@ -26,6 +26,21 @@ def get_winrate(champ:str):
         # print("Winrate:", wr)
         return wr
 
+def get_games_played(champ:str):
+    with app.app_context():
+        games = db.session.execute(text('''SELECT * FROM Champions WHERE champion = "''' + champ + '''"'''))
+        count_games = (len(games.all()))
+        return count_games
+    
+def get_pickrate(champ:str):
+    with app.app_context():
+        all_games = db.session.execute(text('''SELECT * FROM Champions'''))
+        count_champ_games = get_games_played(champ)
+        count_all_games = (len(all_games.all()))
+        pr = round((100 * count_champ_games / count_all_games), 2)
+        return pr
+
+
 @app.route("/")
 def index():
     root = os.getcwd()
@@ -84,7 +99,9 @@ def index():
     for i in range(len(final_list_loading)):
         champ_name = (final_list_tiles[i][len(basepath_tiles)-badpath_len+1:])[:-6]
         wr = get_winrate(champ_name)
-        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i], wr, champ_name))
+        games_picked = get_games_played(champ_name)
+        pr = get_pickrate(champ_name)
+        tuple_list.append((final_list_tiles[i], final_list_splash[i], final_list_loading[i], wr, champ_name, pr, games_picked))
     return render_template('index.html', pics=tuple_list)
 
 @app.route("/champ_page")
@@ -102,6 +119,6 @@ def search_champion():
     if query:
         query = query.title()  # Capitalize the first letter of each word
         if query in champions:
-            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg&win=' + str(get_winrate(query)))
+            return redirect(url_for('champ_page') + '?loading=/static/img/loading/' + query + '_0.jpg&splash=/static/img/splash/' + query + '_0.jpg&win=' + str(get_winrate(query)) + '&pickr=' + str(get_pickrate(query)) + '&games=' + str(get_games_played(query)))
     # If the champion is not found, you can redirect to an error page or back to the index
     return redirect(url_for('index'))
